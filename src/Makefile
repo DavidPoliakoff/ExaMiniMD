@@ -32,7 +32,7 @@ endif
 
 LINK = ${CXX}
 
-KOKKOS_OPTIONS=aggressive_vectorization
+KOKKOS_OPTIONS=aggressive_vectorization,enable_tuning
 
 DEPFLAGS = -M
 
