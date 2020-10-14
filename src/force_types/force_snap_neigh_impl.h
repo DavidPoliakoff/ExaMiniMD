@@ -184,7 +184,7 @@ void ForceSNAP<NeighborClass>::compute(System* system, Binning* binning, Neighbo
 
   //printf("Sizes: %i %i\n",team_scratch_size/1024,thread_scratch_size/1024);
   int vector_length = 8;
-  int team_size_max = Kokkos::TeamPolicy<>(nlocal,Kokkos::AUTO).team_size_max(*this,Kokkos::ParallelForTag());
+  int team_size_max = Kokkos::TeamPolicy<>(nlocal,vector_length).team_size_max(*this,Kokkos::ParallelForTag());
 #ifdef EMD_ENABLE_GPU
   int team_size = 20;//max_neighs;
   if(team_size*vector_length > team_size_max)

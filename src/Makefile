@@ -1,12 +1,12 @@
 #Kokkos root path
-KOKKOS_PATH = ${HOME}/kokkos
+KOKKOS_PATH = ${HOME}/src/kokkos
 
 #Backend and architecture configuration
-KOKKOS_DEVICES=OpenMP
-KOKKOS_ARCH = ""
+KOKKOS_DEVICES=Cuda
+KOKKOS_ARCH = "Volta70"
 
 #MPI On or off (1/0)
-MPI = 1
+MPI = 0
 
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 EXAMINIMD_PATH = $(subst Makefile,,$(MAKEFILE_PATH))/..
@@ -33,6 +33,7 @@ endif
 LINK = ${CXX}
 
 KOKKOS_OPTIONS=aggressive_vectorization,enable_tuning
+#KOKKOS_OPTIONS=aggressive_vectorization
 
 DEPFLAGS = -M
 
