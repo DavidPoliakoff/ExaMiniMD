@@ -192,7 +192,7 @@ void ForceSNAP<NeighborClass>::compute(System* system, Binning* binning, Neighbo
 #else
   int team_size = 1;
 #endif
-  Kokkos::TeamPolicy<> policy(nlocal,team_size,vector_length);
+  Kokkos::TeamPolicy<> policy(nlocal,team_size,Kokkos::AUTO);
 
   Kokkos::parallel_for("ForceSNAP::compute",policy
       .set_scratch_size(1,Kokkos::PerThread(thread_scratch_size))
