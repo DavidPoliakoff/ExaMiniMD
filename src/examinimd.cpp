@@ -59,7 +59,7 @@ ExaMiniMD::ExaMiniMD() {
 #define EMD_METADATA_QUOTE_HELPER(x) #x
 #define EMD_METADATA_QUOTE(x) EMD_METADATA_QUOTE_HELPER(x)
 #define KOKKOS_METADATA_YOLO(name) Kokkos::Tools::declareMetadata(std::string("examinimd.")+std::string(EMD_METADATA_QUOTE(name)),std::to_string(input->name))
-#define KOKKOS_METADATA_YOLO_STRING(name) Kokkos::Tools::declareMetadata(std::string("examinimd.")+std::string(EMD_METADATA_QUOTE(name)),std::string(input->name))
+#define KOKKOS_METADATA_YOLO_STRING(name) Kokkos::Tools::declareMetadata(std::string("examinimd.")+std::string(EMD_METADATA_QUOTE(name)),std::string(input->name ? input->name : "unset"))
 
 void ExaMiniMD::init(int argc, char* argv[]) {
 
