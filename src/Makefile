@@ -1,9 +1,9 @@
 #Kokkos root path
-KOKKOS_PATH = ${HOME}/kokkos
+KOKKOS_PATH ?= ${HOME}/src/kokkos
 
 #Backend and architecture configuration
-KOKKOS_DEVICES=OpenMP
-KOKKOS_ARCH = ""
+KOKKOS_DEVICES ?= Cuda
+KOKKOS_ARCH ?= "Volta70"
 
 #MPI On or off (1/0)
 MPI = 1

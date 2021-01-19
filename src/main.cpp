@@ -45,6 +45,17 @@
 #include "mpi.h"
 #endif
 
+void hacky_thing_kokkos_should_do_for_me(){
+   auto events = Kokkos::Tools::Experimental::get_callbacks();
+   auto push = events.push_region;
+   auto pop = events.pop_region;
+   auto metadata = events.declare_metadata;
+   Kokkos::Tools::Experimental::pause_tools();
+   Kokkos::Tools::Experimental::set_push_region_callback(push);
+   Kokkos::Tools::Experimental::set_pop_region_callback(pop);
+   Kokkos::Tools::Experimental::set_declare_metadata_callback(metadata);
+}
+
 int main(int argc, char* argv[]) {
 
    #ifdef EXAMINIMD_ENABLE_MPI
@@ -52,18 +63,21 @@ int main(int argc, char* argv[]) {
    #endif
 
    Kokkos::initialize(argc,argv);
+   hacky_thing_kokkos_should_do_for_me();
 
    ExaMiniMD examinimd;
    examinimd.init(argc,argv);
   
    examinimd.run(examinimd.input->nsteps);
-
+   Kokkos::Tools::declareMetadata("examinimd.nsteps", std::to_string(examinimd.input->nsteps));
+   Kokkos::Tools::pushRegion("top_level_timer");
    //   examinimd.check_correctness();
 
    examinimd.print_performance();
 
    examinimd.shutdown();
 
+   Kokkos::Tools::popRegion();
    Kokkos::finalize();
 
    #ifdef EXAMINIMD_ENABLE_MPI
