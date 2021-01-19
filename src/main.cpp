@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
    examinimd.init(argc,argv);
   
    examinimd.run(examinimd.input->nsteps);
-   Kokkos::Tools::declareMetadata("examinimd.nsteps", std::to_string(examinimd.input->nsteps));
+   //Kokkos::Tools::declareMetadata("examinimd.nsteps", std::to_string(examinimd.input->nsteps));
    Kokkos::Tools::pushRegion("top_level_timer");
    //   examinimd.check_correctness();
 

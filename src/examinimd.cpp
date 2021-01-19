@@ -56,6 +56,11 @@ ExaMiniMD::ExaMiniMD() {
   neighbor = NULL;
 }
 
+#define EMD_METADATA_QUOTE_HELPER(x) #x
+#define EMD_METADATA_QUOTE(x) EMD_METADATA_QUOTE_HELPER(x)
+#define KOKKOS_METADATA_YOLO(name) Kokkos::Tools::declareMetadata(std::string("examinimd.")+std::string(EMD_METADATA_QUOTE(name)),std::to_string(input->name))
+#define KOKKOS_METADATA_YOLO_STRING(name) Kokkos::Tools::declareMetadata(std::string("examinimd.")+std::string(EMD_METADATA_QUOTE(name)),std::string(input->name))
+
 void ExaMiniMD::init(int argc, char* argv[]) {
 
   if(system->do_print)
@@ -169,6 +174,49 @@ void ExaMiniMD::init(int argc, char* argv[]) {
 
   if(input->correctnessflag)
     check_correctness(step);
+
+  KOKKOS_METADATA_YOLO_STRING(input_file);
+  KOKKOS_METADATA_YOLO(input_file_type);
+  KOKKOS_METADATA_YOLO(units);
+  KOKKOS_METADATA_YOLO(lattice_style);
+  KOKKOS_METADATA_YOLO(lattice_constant);
+  KOKKOS_METADATA_YOLO(lattice_offset_x); 
+  KOKKOS_METADATA_YOLO(lattice_offset_y); 
+  KOKKOS_METADATA_YOLO(lattice_offset_z);
+  KOKKOS_METADATA_YOLO(lattice_nx); 
+  KOKKOS_METADATA_YOLO(lattice_ny); 
+  KOKKOS_METADATA_YOLO(lattice_nz);
+
+  KOKKOS_METADATA_YOLO(temperature_target);
+  KOKKOS_METADATA_YOLO(temperature_seed);
+
+  KOKKOS_METADATA_YOLO(integrator_type);
+  KOKKOS_METADATA_YOLO(nsteps);
+
+  KOKKOS_METADATA_YOLO(binning_type);
+
+
+  KOKKOS_METADATA_YOLO(comm_type);
+  KOKKOS_METADATA_YOLO(comm_exchange_rate);
+  KOKKOS_METADATA_YOLO(comm_newton);
+
+  KOKKOS_METADATA_YOLO(force_type);
+  KOKKOS_METADATA_YOLO(force_iteration_type);
+  KOKKOS_METADATA_YOLO(force_line);
+  KOKKOS_METADATA_YOLO(force_cutoff);
+
+  KOKKOS_METADATA_YOLO(neighbor_skin); 
+
+  KOKKOS_METADATA_YOLO(neighbor_type);
+  
+  KOKKOS_METADATA_YOLO(thermo_rate);
+  KOKKOS_METADATA_YOLO(dumpbinary_rate); 
+  KOKKOS_METADATA_YOLO(correctness_rate);
+  KOKKOS_METADATA_YOLO(dumpbinaryflag);
+  KOKKOS_METADATA_YOLO(correctnessflag);
+  KOKKOS_METADATA_YOLO_STRING(dumpbinary_path); 
+  KOKKOS_METADATA_YOLO_STRING(reference_path);
+  KOKKOS_METADATA_YOLO_STRING(correctness_file);
 
 }
 
