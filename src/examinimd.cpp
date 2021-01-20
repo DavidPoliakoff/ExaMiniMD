@@ -214,9 +214,9 @@ void ExaMiniMD::init(int argc, char* argv[]) {
   KOKKOS_METADATA_YOLO(correctness_rate);
   KOKKOS_METADATA_YOLO(dumpbinaryflag);
   KOKKOS_METADATA_YOLO(correctnessflag);
-  KOKKOS_METADATA_YOLO_STRING(dumpbinary_path); 
-  KOKKOS_METADATA_YOLO_STRING(reference_path);
-  KOKKOS_METADATA_YOLO_STRING(correctness_file);
+  //KOKKOS_METADATA_YOLO_STRING(dumpbinary_path); 
+  //KOKKOS_METADATA_YOLO_STRING(reference_path);
+  //KOKKOS_METADATA_YOLO_STRING(correctness_file);
 
 }
 
