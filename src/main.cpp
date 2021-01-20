@@ -65,12 +65,13 @@ int main(int argc, char* argv[]) {
    Kokkos::initialize(argc,argv);
    hacky_thing_kokkos_should_do_for_me();
 
+   Kokkos::Tools::pushRegion("top_level_timer");
+
    ExaMiniMD examinimd;
    examinimd.init(argc,argv);
   
    examinimd.run(examinimd.input->nsteps);
    //Kokkos::Tools::declareMetadata("examinimd.nsteps", std::to_string(examinimd.input->nsteps));
-   Kokkos::Tools::pushRegion("top_level_timer");
    //   examinimd.check_correctness();
 
    examinimd.print_performance();
